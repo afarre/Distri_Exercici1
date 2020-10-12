@@ -18,13 +18,13 @@ public class Divider extends Thread{
     }
 
     public static int cercaParallela(int aBuscar, int[] Array, int NumThreads){
-        int numSubArrays = Array.length/numThreads;
-        int leftOvers = listSize - numSubArrays*numThreads;
+        int numSubArrays = Array.length/NumThreads;
+        int leftOvers = Array.length - numSubArrays*NumThreads;
         int[] subArray;
         int currentIndex = 0;
         ArrayList<Searcher> threadList = new ArrayList<Searcher>();
 
-        for (int i = 0; i < numThreads; i++){
+        for (int i = 0; i < NumThreads; i++){
             if (leftOvers > 0){
                 subArray = new int[numSubArrays + 1];
                 leftOvers--;

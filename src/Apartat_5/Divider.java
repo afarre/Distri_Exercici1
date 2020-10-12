@@ -3,9 +3,9 @@ package Apartat_5;
 import java.util.ArrayList;
 
 public class Divider extends Thread{
-    private static final int listSize = 100;
-    private static final int aBuscar = 51;
-    private static final int numThreads = 6;
+    private static final int listSize = 10000;
+    private static final int aBuscar = 2350;
+    private static final int numThreads = 16;
     private static int[] list;
 
     public Divider(){
@@ -18,8 +18,8 @@ public class Divider extends Thread{
     }
 
     public static int cercaParallela(int aBuscar, int[] Array, int NumThreads){
-        int leftOvers = listSize - (listSize/NumThreads)*NumThreads;
-        int increase = listSize/NumThreads;
+        int leftOvers = Array.length - (Array.length/NumThreads)*NumThreads;
+        int increase = Array.length/NumThreads;
         int startingIndex = 0;
         int endIndex = 0;
         ArrayList<Searcher> threadList = new ArrayList<Searcher>();
