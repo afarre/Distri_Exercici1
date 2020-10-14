@@ -10,6 +10,33 @@ public class MergeSort extends Thread {
     private int [] sortedSubArray1;
     private int [] sortedSubArray2;
     private boolean first;
+    private long startTime;
+
+    public static void main(String[] args) {
+        //Ordenacio sequencial
+        int arraySize = 1000;
+        int swap;
+        int [] array = new int[arraySize];
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++){
+            array[i] = random.nextInt(10);
+        }
+        long startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < arraySize; i++) {
+            for (int j = i+1; j < arraySize; j++) {
+                if(array[i] > array[j]) {      //swap elements if not in order
+                    swap = array[i];
+                    array[i] = array[j];
+                    array[j] = swap;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(array));
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Time elapsed: " + elapsedTime);
+    }
 
     public MergeSort(){
         array = new int[arraySize];
@@ -17,6 +44,7 @@ public class MergeSort extends Thread {
         for (int i = 0; i < array.length; i++){
             array[i] = random.nextInt(10);
         }
+        startTime = System.currentTimeMillis();
         System.out.println("Array:\t\t\t\t\t\t\t" + Arrays.toString(array));
         this.start();
     }
@@ -44,6 +72,9 @@ public class MergeSort extends Thread {
             int[] sortedArray = sortSubArrays(sortedSubArray1, sortedSubArray2);
             if (parent == null){
                 System.out.println(this.getName() + "'s final sorted array:\t" + Arrays.toString(sortedArray));
+                long endTime = System.currentTimeMillis();
+                long elapsedTime = endTime - startTime;
+                System.out.println("Time elapsed: " + elapsedTime);
                 System.exit(0);
             }
             if (first){

@@ -1,11 +1,12 @@
 package Apartat_4;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Divider extends Thread{
-    private static final int listSize = 1000;
-    private static final int aBuscar = 10;
-    private static final int numThreads = 6;
+    private static final int listSize = 100;
+    private static final int aBuscar = 56;
+    private static final int numThreads = 2;
     private static int[] list;
 
     public Divider(){
@@ -14,7 +15,11 @@ public class Divider extends Thread{
             list[i] = i;
         }
 
+        long startTime = System.currentTimeMillis();
         cercaParallela(aBuscar, list, numThreads);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Time elapsed: " + elapsedTime);
     }
 
     public static int cercaParallela(int aBuscar, int[] Array, int NumThreads){
